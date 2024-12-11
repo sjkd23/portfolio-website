@@ -1,0 +1,668 @@
+/* Font for certain texts. Usually not used for headers*/
+/* Can be found in fonts folder*/
+@font-face {
+    font-family: 'VCR OSD Mono';
+    src: url('fonts/VCR_OSD_Mono.woff2') format('woff2'),
+        url('fonts/VCR_OSD_Mono.woff') format('woff');
+
+    font-style: normal;
+}
+
+/***********************************************
+* Global Styling
+***********************************************/
+
+/* Reset any potential default margin/padding  */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* default h2 settings; section titles are the h2s*/
+h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
+    font-family: 'IBM Plex Mono', monospace;
+    /* Alternate font used for some headers*/
+    text-align: center;
+    background-color: lightcoral;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    margin: 5% 0;
+}
+
+/* bolds certain text */
+.highlight {
+    font-weight: bold;
+}
+
+/***********************************************
+* Navigation Bar Styling
+***********************************************/
+
+/* navbar background and size */
+.navbar {
+    background: url('./pictures/darkbg.png');
+    /* Custom dark background image*/
+    background-size: cover;
+    width: 75%;
+    /* navbar takes up 75% of screen but no larger than 1200px*/
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Hamburger menu */
+.navbar-toggler {
+    border-color: gray;
+    border-style: solid;
+    position: relative;
+}
+
+/* Hamburger menu icon style */
+.navbar-toggler-icon {
+    width: 5rem;
+    height: 5rem;
+    background-size: 5rem 5rem;
+
+}
+
+/* Logo on navbar*/
+.navbar-brand {
+    height: 100px;
+    width: auto;
+    margin-left: 10px;
+}
+
+/* Navigation links style*/
+.nav-link {
+    font-size: 2.25rem;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: 'VCR OSD Mono', monospace;
+    padding: 12px;
+    margin: 0.5rem;
+    transition: all 0.5s ease;
+}
+
+/* Effect while hovering over nav-links; underlines, darkens and pops out a bit */
+.nav-link:hover {
+    text-decoration: underline;
+    color: #f0f0f0;
+    transform: translate(-3px, -3px);
+}
+
+/* Adds a vertical line between navigation links */
+.nav-item:not(:last-child)::after {
+    content: '|';
+    color: #ffffff;
+    position: absolute;
+    right: -5px;
+    top: 45%;
+    transform: translateY(-55%);
+    font-size: 2.5rem;
+    font-weight: 100;
+}
+
+/* No vertical line after the last link*/
+.nav-item:not(:last-child) {
+    position: relative;
+}
+
+/* Contact Me button styling*/
+.contact-button {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #222;
+    background-color: #f0f0f0;
+    font-family: 'VCR OSD Mono', monospace;
+    margin-left: 5rem;
+    margin-right: 2rem;
+    transition: all 0.3s;
+}
+
+/* Effect when hovering over contact me button; pops up and darkens slightly */
+.contact-button:hover {
+    background: #e0e0e0;
+    transform: translate(-3px, -3px);
+}
+
+
+
+/***********************************************
+* Hero Section Styling
+***********************************************/
+#hero {
+    display: flex;
+    height: 60vh;
+    /* entire section takes up 60% of screen*/
+    color: #ffffff;
+    text-align: center;
+}
+
+/* Left side image */
+#hero .hero-image-left {
+    background: url('./pictures/waves_left.png') no-repeat center center;
+    background-size: cover;
+    width: 20%;
+    /* Takes 20% of width*/
+}
+
+/* Center background section */
+#hero .hero-background {
+    background-color: #222;
+    background-size: cover;
+    width: 60%;
+    /* Takes 60% of width*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Right side image*/
+#hero .hero-image-right {
+    background: url('./pictures/waves_right.png') no-repeat center center;
+    background-size: cover;
+    width: 20%;
+    /* Takes the last 20% of width*/
+}
+
+/* Main title styling; the h1 header */
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    font-family: 'IBM Plex Mono', monospace;
+    /* alternate font used for some headers */
+    color: #fff;
+    -webkit-text-stroke-width: 0.13rem;
+    /* creates a black outline on the letters; makes them sharper and clearer*/
+    -webkit-text-stroke-color: black;
+}
+
+/* Subtitle styling */
+.hero-subtitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    font-family: 'VCR OSD Mono', monospace;
+    -webkit-text-stroke-width: 0.04rem;
+    -webkit-text-stroke-color: black;
+}
+
+
+
+
+
+/***********************************************
+*About Me Section Styling
+***********************************************/
+
+/* About me header styling; different background from default h2*/
+#about h2 {
+    background-color: #e0e0e0;
+    margin: 3rem
+}
+
+/* background and size of the about me section*/
+.about-section {
+    background-color: #f0f0f0;
+    height: 40vh;
+    /* takes up the other 40% of screen (hero takes the first 60%)*/
+    color: #333;
+    text-align: center;
+}
+
+/* About me paragraph text font styling */
+.about-section p {
+    font-size: 1.5rem;
+    font-family: 'VCR OSD Mono', monospace;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Creates a horizontal line after the paragrah; hopefully visually appealing */
+.about-section p::after {
+    content: '──────────────────────────────────────────────────────────';
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    margin: auto;
+    padding: 5rem;
+}
+
+
+
+/***********************************************
+* Projects Section Styling
+***********************************************/
+
+/* Projects Section*/
+.projects-section {
+    display: flex;
+    /* flex; allows images to be on the sides*/
+    align-items: center;
+    /* center items and content*/
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    position: relative;
+    /* relative; required for things to correctly overlap*/
+}
+
+/* Basic backgrounds on each side; they are behind images*/
+/* Left Side Background Strip */
+.projects-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    background-color: darkslateblue;
+    border-radius: 0.3rem;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+/* Right Side Background Strip*/
+.projects-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 20%;
+    background-color: darkslateblue;
+    border-radius: 0.3rem;
+    z-index: 1;
+    transition: all 0.5s ease;
+
+}
+
+
+/* Skip Puzzle Button Container */
+.skip-button-container {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+    z-index: 2; /* Ensure the button appears above other elements */
+}
+
+/* Skip Puzzle Button Styling */
+#skip-button {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#skip-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Left Images Container */
+.left-images {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Puzzle Grid */
+.puzzle-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: auto;
+    gap: 2px;
+}
+
+/* Puzzle Piece Styling */
+.puzzle-piece {
+    width: 10rem;
+    height: 10rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.75;
+    transition: all 0.5s ease;
+    cursor: grab;
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+}
+/* Project Text Styling*/
+.projects-section .section-title {
+    background-color: white;
+}
+
+/* Horizontal line above the projects header */
+.projects-section .section-title::before {
+    content: '─────────────────────────────────────────────────────────';
+    position: static;
+    transform: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: lightcoral;
+}
+
+
+/* Flex container for the projects section */
+.projects-section .projects-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lightcyan;
+
+}
+
+/* Horizontal line after all the projects; at the end of the container */
+.projects-section .projects-container::after {
+    content: '─────────────────────────────────────────────────────────';
+    position: static;
+    transform: none;
+    font-size: 1rem;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+    margin: 1rem;
+    color: coral;
+}
+
+/* Projects Cards Styling*/
+.project-title {
+    font-size: 2.5rem;
+}
+
+/* Projects grid for all listed projects */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* collumns will be 2 by 2; each talking half of available space*/
+    gap: 7rem;
+}
+
+/* Project Card Styling  */
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+    text-align: center;
+    position: relative;
+    max-width: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Hover over card styling; pops out a bit */
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Project status style */
+.project-status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #ff6347;
+    /* Red color for ongoing projects */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    z-index: 2;
+    /* Ensure it stays above the image */
+}
+
+.project-status.completed {
+    background-color: #28a745;
+    /* Green color for completed projects */
+}
+
+/* Project thumbnail image styling; max width of 200px*/
+.project-thumbnail img {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+    border-radius: 10px;
+    transition: all 0.5s ease
+}
+
+.project-description p::before {
+    gap: 3rem
+}
+
+/* Project meta styling; includes role and start/end date; at bottom of project card */
+.project-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    padding: 0 10px;
+}
+
+.project-role {
+    font-weight: bold;
+}
+
+.project-date {
+    align-items: end;
+    /* Ensure the date is bottom right*/
+}
+
+
+
+/***********************************************
+* Media Section Styling
+***********************************************/
+.media-section {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+/* Media grid for the social media icons/names  */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 by 2 grid*/
+    gap: 2rem;
+    justify-items: center;
+}
+
+.media-item {
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s, color 0.3s;
+}
+
+/* Effect when hovering over a media item; pops up and darkens*/
+.media-item:hover {
+    transform: translateY(-10px);
+    color: darkcyan;
+}
+
+/* Media logo styling */
+.media-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* Media name styling */
+.media-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+
+/***********************************************
+* Smaller device Stylings Section
+***********************************************/
+
+/* Navigation bar on small devices */
+/* Gradual decrease in font size to fit smaller window */
+@media (max-width: 1200px) {
+    .nav-link {
+        font-size: 1.45rem;
+    }
+
+    .contact-button {
+        margin: 0.5rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .nav-item:not(:last-child)::after {
+        content: '──';
+        position: static;
+        transform: none;
+        font-size: 1.5rem;
+        display: block;
+        text-align: center;
+        margin: 0;
+        width: 100%;
+        /* Ensure the line does not cause overflow */
+        overflow: hidden;
+        /* Hide any overflow */
+    }
+
+    /* Position the Contact Me button at the bottom right of the hamburger menu */
+    .contact-button {
+        align-self: flex-end;
+        margin: 0.5rem auto;
+    }
+}
+
+
+/* Hero Section Styling on small devices */
+@media (max-width: 992px) {
+
+    #hero .hero-image-left,
+    #hero .hero-image-right {
+        display: none;
+    }
+
+    #hero .hero-background {
+        width: 100%;
+    }
+}
+
+/* About Me Styling on small devices */
+/* These ensure the about me section does not overlap with the hero section on small screens */
+@media (max-width: 992px),
+(max-height: 992px) {
+    .about-section {
+        height: auto;
+    }
+
+    .about-section p::after {
+        content: '─────────────────────────────────';
+        font-size: 1rem;
+    }
+}
+
+/* Background Strip Styiling on smaller devices*/
+/* Gradual decrease in size */
+@media (max-width:1400px) {
+    .projects-section::after {
+        width: 15%;
+    }
+
+    .projects-section::before {
+        width: 15%;
+    }
+
+}
+
+/* The side-strip backgrounds disappear on small screens */
+@media (max-width: 1200px) {
+
+    .projects-section::before,
+    .projects-section::after {
+        display: none;
+    }
+}
+
+/* Adjust horizontal lines for smaller devices */
+@media (max-width: 991px) {
+    .projects-section .section-title::before,
+    .projects-section .projects-container::after {
+        content: '──────────────────────────────';
+        font-size: 1rem;
+    }
+}
+
+/* Projects side images on smaller devices */
+/* Gradual decrease in sizes on smaller screens */
+@media (max-width: 1800px) {
+    .projects-section .left-images,
+    .projects-section .right-images {
+        display: none;
+    }
+}
+
+/* Images disappear when screen is small enough */
+@media (max-width: 1400px) {
+    .projects-section .left-image {
+        display: none;
+    }
+
+    .projects-section .right-image {
+        display: none;
+    }
+}
+
+
+/* Project Cards Styling on smaller devices*/
+@media (max-width: 1400px) {
+    .projects-grid {
+        gap: 1rem;
+        /* reduce gap on smaller device*/
+    }
+
+    .project-thumbnail img {
+        max-width: 150px;
+        /* reduce max-width on thumbnail image*/
+    }
+}
+
+@media (max-width: 992px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        /* project cards become 1 by 1*/
+    }
+
+}
+
+/* Media Styling on smaller devices */
+@media (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: 1fr;
+        /* 1 by 1 grid on small screens*/
+    }
+
+    .media-item {
+        margin-bottom: 2rem;
+    }
+}

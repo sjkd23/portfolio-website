@@ -10,10 +10,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dylan Stauch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description"
+        content="A portfolio website showcasing Dylan Stauch's software development projects and media profiles." />
+    <meta name="keywords" content="Dylan Stauch, software developer, portfolio, web development, programming">
+    <meta name="author" content="Dylan Stauch">
+    <meta property="og:title" content="Dylan Stauch - Software Developer">
+    <meta property="og:description" content="Portfolio website showcasing software development projects">
+    <meta property="og:type" content="website">
+    <title>Dylan Stauch - Software Developer Portfolio</title>
     <!-- Bootstrap Link-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Devicon for skill icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <!-- External CSS file link-->
     <link rel="stylesheet" href="styles.css">
     <!-- Link to IBM font-->
@@ -21,44 +30,50 @@
 </head>
 
 <body>
+    <!-- Skip link will be added dynamically by JavaScript -->
 
-    <!-- Navigation Bar -->
-    <!-- Navbar stays at the top of the screen; Expanded navbar when screen is large enough  -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
+    <header>
+        <!-- Navigation Bar -->
+        <!-- Navbar stays at the top of the screen; Expanded navbar when screen is large enough  -->
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
 
-            <!-- Navbar logo at top left. Uses bootstrap feature of "navbar-brand" -->
-            <img src="./pictures/name_logo.png" alt="Dylan Stauch Logo" class="navbar-brand">
+                <!-- Navbar logo at top left. Uses bootstrap feature of "navbar-brand" -->
+                <img src="./pictures/name_logo.png" alt="Dylan Stauch Logo" class="navbar-brand">
 
-            <!-- Creates the hamburger menu; collapsable menu -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon navbar-dark"></span>
-            </button>
+                <!-- Creates the hamburger menu; collapsable menu -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon navbar-dark"></span>
+                </button>
 
-            <!-- Collapsable content in navbar -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <!-- Adjusts layout based on screen size -->
-                <div class="d-flex flex-column flex-lg-row align-items-center mx-auto">
-                    <!-- Navigation links in the navbar; each link anchors to a section within the page -->
-                    <ul class="navbar-nav flex-column flex-lg-row align-items-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#about">About Me</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#projects">Projects</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#media">Media</a>
-                        </li>
-                    </ul>
-                    <!-- Contact Me button triggers the Modal -->
-                    <button type="button" class="btn btn-outline-light contact-button" data-bs-toggle="modal"
-                        data-bs-target="#contactModal" aria-label="Contact Me">Contact Me</button>
+                <!-- Collapsable content in navbar -->
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <!-- Adjusts layout based on screen size -->
+                    <div class="d-flex flex-column flex-lg-row align-items-center mx-auto">
+                        <!-- Navigation links in the navbar; each link anchors to a section within the page -->
+                        <ul class="navbar-nav flex-column flex-lg-row align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about">About Me</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#skills">Skills</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#projects">Projects</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#media">Media</a>
+                            </li>
+                        </ul>
+                        <!-- Contact Me button triggers the Modal -->
+                        <button type="button" class="btn btn-outline-light contact-button" data-bs-toggle="modal"
+                            data-bs-target="#contactModal" aria-label="Contact Me">Contact Me</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
     <!-- Contact Me Modal -->
     <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
@@ -70,20 +85,28 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="contactForm" novalidate>
                         <!-- Information that the user needs to fill in to contact me -->
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" required>
+                            <input type="text" class="form-control" id="fullName" name="fullName" required 
+                                   aria-describedby="fullNameError">
+                            <div id="fullNameError" class="invalid-feedback" role="alert"></div>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required
+                                   aria-describedby="emailError">
+                            <div id="emailError" class="invalid-feedback" role="alert"></div>
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="3" required></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="3" required
+                                      aria-describedby="messageError"></textarea>
+                            <div id="messageError" class="invalid-feedback" role="alert"></div>
                         </div>
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; z-index: -1; overflow: hidden;" aria-hidden="true" tabindex="-1" autocomplete="off">
                         <!-- Close and Submit buttons at the bottom/footer -->
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -95,149 +118,175 @@
         </div>
     </div>
 
-    <!-- Hero Section (Main dispaly) -->
-    <section id="hero">
-        <!-- Left Image; image on left side of hero display; hidden on small screens-->
-        <div class="hero-image-left d-none d-md-block"></div>
+    <main>
+        <!-- Hero Section (Main dispaly) -->
+        <section id="hero">
+            <!-- Left Image; image on left side of hero display; hidden on small screens-->
+            <div class="hero-image-left d-none d-md-block"></div>
 
-        <!-- Center Background; includes main header and a paragraph -->
-        <div class="hero-background">
+            <!-- Center Background; includes main header and a paragraph -->
+            <div class="hero-background">
+                <div class="container">
+                    <h1 class="hero-title">Dylan Stauch</h1>
+                    <p class="hero-subtitle">Software Development</p>
+                </div>
+            </div>
+
+            <!-- Right Image; image on right side of hero display; hidden on small screens -->
+            <div class="hero-image-right d-none d-md-block"></div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="about-section d-flex align-items-center">
+            <div class="container text-center">
+                <h2>About Me</h2>
+                <!-- Highlighting specific words in the paragraph -->
+                <p>Hi, I'm <span class="highlight">Dylan Stauch</span>, an aspiring software developer.<br>
+                    This page has all of my <span class="highlight">Projects</span> and <span class="highlight">Social
+                        Media</span> info!</p>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills-section">
+            <!-- Skills content will be dynamically generated by JavaScript -->
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <!-- Projects Content -->
+            <div class="projects-container">
+                <h2 class="section-title">Projects</h2>
+                <!-- Creates a card grid for all the project entries -->
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <!-- Status of project; completed/ongoing/abandoned -->
+                        <div class="project-status ongoing">Ongoing</div>
+                        <!-- Thumbnail for project -->
+                        <div class="project-thumbnail">
+                            <img src="./pictures/project_pics/gachabot_logo.png" alt="GachaBot Thumbnail">
+                        </div>
+                        <!-- Title for project; title links to the project site -->
+                        <a href="https://github.com/sjkd23/GachaBot" class="project-title" 
+                           target="_blank" rel="noopener noreferrer">GachaBot</a>
+                        <!-- Description of project -->
+                        <p class="project-description"><span class="highlight">Discord Bot
+                                (discordjs/ts)</span><br>
+                            Collect Gacha cards, play minigames and create your own cards for others to use!</p>
+                        <!-- Contains my role on the project and the start-end dates of the project -->
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">2023 - Present</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <div class="project-thumbnail">
+                            <img src="./pictures/name_logo.png" alt="Portfolio Website Thumbnail">
+                        </div>
+                        <a href="https://dylanstauch.com" class="project-title" target="_blank" rel="noopener noreferrer">This Website</a>
+                        <p class="project-description"><span class="highlight">Front-End Web Development<br>
+                                (CSS, HTML, JavaScript)</span><br>
+                            Interactive portfolio landing page</p>
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">2024 - Present</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <div class="project-thumbnail">
+                            <img src="./pictures/project_pics/note_logo.png" alt="Note Taker 3000 Thumbnail">
+                        </div>
+                        <a href="https://github.com/sjkd23/note-app" class="project-title" 
+                           target="_blank" rel="noopener noreferrer">Note Taker 3000</a>
+                        <p class="project-description"><span class="highlight">Note Taking Application<br>
+                                (Web Development)</span><br>
+                            A comprehensive note-taking app with rich features for organizing and managing your notes efficiently.</p>
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">December 2024</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <div class="project-thumbnail">
+                            <img src="./pictures/project_pics/weather_logo.png" alt="Weather Checker Thumbnail">
+                        </div>
+                        <a href="https://github.com/sjkd23/Weather-App" class="project-title" 
+                           target="_blank" rel="noopener noreferrer">Weather Checker</a>
+                        <p class="project-description"><span class="highlight">Weather Application<br>
+                                (Web Development)</span><br>
+                            A sleek weather app that provides real-time weather information and forecasts for any location.</p>
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">February 2025</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <div class="project-thumbnail">
+                            <img src="./pictures/project_pics/weather_logo.png" alt="Mobile Weather App Thumbnail">
+                        </div>
+                        <a href="https://github.com/sjkd23/Mobile-Weather-App" class="project-title" 
+                           target="_blank" rel="noopener noreferrer">Mobile Weather App</a>
+                        <p class="project-description"><span class="highlight">Mobile Application<br>
+                                (Mobile Development)</span><br>
+                            A mobile-optimized weather application designed for seamless on-the-go weather checking.</p>
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">May 2025</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-status completed">Completed</div>
+                        <div class="project-thumbnail">
+                            <img src="./pictures/project_pics/PagePersonAI_logo.png" alt="PagePersona Thumbnail">
+                        </div>
+                        <a href="https://github.com/sjkd23/PagePersona" class="project-title" 
+                           target="_blank" rel="noopener noreferrer">PagePersona</a>
+                        <p class="project-description"><span class="highlight">AI-Powered Web Transformation<br>
+                                (AI/ML, Web Development)</span><br>
+                            An innovative tool that uses AI to transform and personalize webpages based on user preferences and behavior.</p>
+                        <div class="project-meta">
+                            <span class="project-role">Role: Developer (Solo)</span>
+                            <span class="project-date">June 2025 - July 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Section -->
+        <section id="media" class="media-section">
             <div class="container">
-                <h1 class="hero-title">Dylan Stauch</h1>
-                <p class="hero-subtitle">Software Development</p>
-            </div>
-        </div>
-
-        <!-- Right Image; image on right side of hero display; hidden on small screens -->
-        <div class="hero-image-right d-none d-md-block"></div>
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about" class="about-section d-flex align-items-center">
-        <div class="container text-center">
-            <h2>About Me</h2>
-            <!-- Highlighting specific words in the paragraph -->
-            <p>Hi, I'm <span class="highlight">Dylan Stauch</span>, an aspiring software developer.<br>
-                This page has all of my <span class="highlight">Projects</span> and <span class="highlight">Social
-                    Media</span> info!</p>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="left-images">
-            <!-- Skip Puzzle Button Container -->
-            <div class="skip-button-container">
-                <button id="skip-button">Skip Puzzle</button>
-            </div>
-            <div class="puzzle-grid">
-            <div class="puzzle-piece" id="piece1" draggable="true" data-image="space" data-position="TL"
-                style="background-image: url('./pictures/puzzles/space/spaceTL.png');"></div>
-            <div class="puzzle-piece" id="piece2" draggable="true" data-image="pirate" data-position="TR"
-                style="background-image: url('./pictures/puzzles/pirate/pirateTR.png');"></div>
-            <div class="puzzle-piece" id="piece3" draggable="true" data-image="fish" data-position="BL"
-                style="background-image: url('./pictures/puzzles/fish/fishBL.png');"></div>
-            <div class="puzzle-piece" id="piece4" draggable="true" data-image="robot" data-position="BR"
-                style="background-image: url('./pictures/puzzles/robot/robotBR.png');"></div>
-            <div class="puzzle-piece" id="piece4-1" draggable="true" data-image="pirate" data-position="TL"
-                style="background-image: url('./pictures/puzzles/pirate/pirateTL.png');"></div>
-            <div class="puzzle-piece" id="piece4-2" draggable="true" data-image="fish" data-position="TR"
-                style="background-image: url('./pictures/puzzles/fish/fishTR.png');"></div>
-            <div class="puzzle-piece" id="piece4-3" draggable="true" data-image="robot" data-position="BL"
-                style="background-image: url('./pictures/puzzles/robot/robotBL.png');"></div>
-            <div class="puzzle-piece" id="piece4-4" draggable="true" data-image="space" data-position="BR"
-                style="background-image: url('./pictures/puzzles/space/spaceBR.png');"></div>
-        </div>
-        </div>
-        <!-- Projects Content -->
-        <div class="projects-container">
-            <h2 class="section-title">Projects</h2>
-            <!-- Creates a card grid for all the project entries -->
-            <div class="projects-grid">
-                <div class="project-card">
-                    <!-- Status of project; completed/ongoing/abandoned -->
-                    <div class="project-status ongoing">Ongoing</div>
-                    <!-- Thumbnail for project -->
-                    <div class="project-thumbnail">
-                        <img src="./pictures/GachaBot.png" alt="GachaBot Thumbnail">
-                    </div>
-                    <!-- Title for project; title links to the project site -->
-                    <a href="https://github.com/sjkd23/GachaBot" class="project-title">GachaBot</a>
-                    <!-- Description of project -->
-                    <p class="project-description"><span class="highlight">Discord Bot
-                            (discordjs/ts)</span><br>
-                        Collect Gacha cards, play minigames and create your own cards for others to use!</p>
-                    <!-- Contains my role on the project and the start-end dates of the project -->
-                    <div class="project-meta">
-                        <span class="project-role">Role: Developer (Solo)</span>
-                        <span class="project-date">2023 - Present</span>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-status completed">Completed</div>
-                    <div class="project-thumbnail">
-                        <img src="./pictures/name_logo.png" alt="Website Thumbnail">
-                    </div>
-                    <a href="http://127.0.0.1:5500/index.html" class="project-title">This Website</a>
-                    <p class="project-description"><span class="highlight">Front/Back End Web Dev <br>
-                            (CSS, HTML, Javascript)</span><br>
-                        Landing page for my portfolio</p>
-                    <div class="project-meta">
-                        <span class="project-role">Role: Developer (Solo)</span>
-                        <span class="project-date">2024 - Present</span>
-                    </div>
+                <h2 class="section-title">Media</h2>
+                <!-- grid for all my social media profiles -->
+                <div class="media-grid">
+                    <!-- GitHub link added as first media item -->
+                    <a href="https://github.com/sjkd23" target="_blank" class="media-item">
+                        <img src="./pictures/logos/github_logo.png" alt="GitHub" class="media-image">
+                        <p class="media-name">GitHub</p>
+                    </a>
+                    <!-- link to my page; clicking on the picture sends you there -->
+                    <a href="https://www.linkedin.com/in/dylan-stauch/" target="_blank" class="media-item">
+                        <!-- link to media logo -->
+                        <img src="./pictures/logos/linkedin_logo.png" alt="LinkedIn" class="media-image">
+                        <!-- name of media -->
+                        <p class="media-name">LinkedIn</p>
+                    </a>
+                    <a href="https://discord.gg/o3" target="_blank" class="media-item">
+                        <img src="./pictures/logos/discord_logo.png" alt="Discord" class="media-image">
+                        <p class="media-name">Discord</p>
+                    </a>
+                    <a href="https://www.instagram.com/sjkd14/" target="_blank" class="media-item">
+                        <img src="./pictures/logos/instagram_logo.png" alt="Instagram" class="media-image">
+                        <p class="media-name">Instagram</p>
+                    </a>
                 </div>
             </div>
-        </div>
-        <!-- Right Images Container; image on right side of projects section -->
-        <div class="right-images">
-            <div class="puzzle-piece" id="piece2-1" draggable="true" data-image="robot" data-position="TL"
-                style="background-image: url('./pictures/puzzles/robot/robotTL.png');"></div>
-            <div class="puzzle-piece" id="piece2-2" draggable="true" data-image="space" data-position="TR"
-                style="background-image: url('./pictures/puzzles/space/spaceTR.png');"></div>
-            <div class="puzzle-piece" id="piece2-3" draggable="true" data-image="pirate" data-position="BL"
-                style="background-image: url('./pictures/puzzles/pirate/pirateBL.png');"></div>
-            <div class="puzzle-piece" id="piece2-4" draggable="true" data-image="fish" data-position="BR"
-                style="background-image: url('./pictures/puzzles/fish/fishBR.png');"></div>
-            <div class="puzzle-piece" id="piece3-1" draggable="true" data-image="fish" data-position="TL"
-                style="background-image: url('./pictures/puzzles/fish/fishTL.png');"></div>
-            <div class="puzzle-piece" id="piece3-2" draggable="true" data-image="robot" data-position="TR"
-                style="background-image: url('./pictures/puzzles/robot/robotTR.png');"></div>
-            <div class="puzzle-piece" id="piece3-3" draggable="true" data-image="space" data-position="BL"
-                style="background-image: url('./pictures/puzzles/space/spaceBL.png');"></div>
-            <div class="puzzle-piece" id="piece3-4" draggable="true" data-image="pirate" data-position="BR"
-                style="background-image: url('./pictures/puzzles/pirate/pirateBR.png');"></div>
-        </div>
-    </section>
-
-    <!-- Media Section -->
-    <section id="media" class="media-section">
-        <div class="container">
-            <h2 class="section-title">Media</h2>
-            <!-- grid for all my social media profiles -->
-            <div class="media-grid">
-                <!-- link to my page; clicking on the picture sends you there -->
-                <a href="https://www.linkedin.com/in/dylan-stauch/" target="_blank" class="media-item">
-                    <!-- link to media logo -->
-                    <img src="./pictures/linkedin_logo.png" alt="LinkedIn" class="media-image">
-                    <!-- name of media -->
-                    <p class="media-name">LinkedIn</p>
-                </a>
-                <a href="https://discord.gg/o3" target="_blank" class="media-item">
-                    <img src="./pictures/discord_logo.png" alt="Discord" class="media-image">
-                    <p class="media-name">Discord</p>
-                </a>
-                <a href="https://x.com/DylanStauch" target="_blank" class="media-item">
-                    <img src="./pictures/x_logo.png" alt="X(Twitter)" class="media-image">
-                    <p class="media-name">Twitter</p>
-                </a>
-                <a href="https://www.instagram.com/sjkd14/" target="_blank" class="media-item">
-                    <img src="./pictures/instagram_logo.png" alt="Instagram" class="media-image">
-                    <p class="media-name">Instagram</p>
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer Section -->
     <footer class="footer">

@@ -2,8 +2,7 @@
 /* Can be found in fonts folder*/
 @font-face {
     font-family: 'VCR OSD Mono';
-    src: url('fonts/VCR_OSD_Mono.woff2') format('woff2'),
-        url('fonts/VCR_OSD_Mono.woff') format('woff');
+    src: url('fonts/VCR_OSD_MONO_1.001.woff2') format('woff2');
     font-style: normal;
 }
 

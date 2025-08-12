@@ -35,7 +35,7 @@
     <header>
         <!-- Navigation Bar -->
         <!-- Navbar stays at the top of the screen; Expanded navbar when screen is large enough  -->
-        <nav class="navbar navbar-expand-lg fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container">
 
                 <!-- Navbar logo at top left. Uses bootstrap feature of "navbar-brand" -->
@@ -44,7 +44,7 @@
                 <!-- Creates the hamburger menu; collapsable menu -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon navbar-dark"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Collapsable content in navbar -->
@@ -85,7 +85,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="contactForm" novalidate>
+                    <!-- Netlify-captured contact form with proper attributes for form handling -->
+                    <form id="contactForm" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="website" action="/thanks.html" novalidate>
+                        <!-- Hidden input required by Netlify to identify the form -->
+                        <input type="hidden" name="form-name" value="contact" />
+                        
                         <!-- Information that the user needs to fill in to contact me -->
                         <div class="mb-3">
                             <label for="fullName" class="form-label">Full Name</label>
@@ -105,7 +109,7 @@
                                       aria-describedby="messageError"></textarea>
                             <div id="messageError" class="invalid-feedback" role="alert"></div>
                         </div>
-                        <!-- Honeypot field for spam protection -->
+                        <!-- Honeypot field for spam protection - kept hidden and reused for Netlify -->
                         <input type="text" name="website" id="website" style="position: absolute; left: -9999px; opacity: 0; height: 0; width: 0; z-index: -1; overflow: hidden;" aria-hidden="true" tabindex="-1" autocomplete="off">
                         <!-- Close and Submit buttons at the bottom/footer -->
                         <div class="modal-footer">

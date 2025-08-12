@@ -171,7 +171,8 @@ function setupContactForm() {
 }
 
 /**
- * Handle contact form submission
+ * Handle contact form submission with Netlify AJAX pattern
+ * This allows form submission without page reload while still using Netlify Forms
  */
 async function handleContactFormSubmission(event) {
     event.preventDefault();
@@ -183,16 +184,15 @@ async function handleContactFormSubmission(event) {
         return;
     }
     
-    // Collect form data
-    const formData = {
-        fullName: form.fullName.value.trim(),
-        email: form.email.value.trim(),
-        message: form.message.value.trim(),
-        botField: form.website.value // honeypot field
-    };
+    // Check honeypot field for spam protection
+    if (form.website.value) {
+        // This is likely spam, fail silently
+        console.warn('Honeypot field filled, possible spam submission');
+        return;
+    }
     
-    // Submit form to API
-    await submitContactForm(formData, form);
+    // Submit form using Netlify AJAX pattern
+    await submitToNetlify(form);
 }
 
 /**
@@ -282,29 +282,39 @@ function isValidEmail(email) {
 }
 
 /**
- * Submit contact form to API endpoint
+ * Submit form to Netlify using AJAX pattern
+ * This keeps the form in the HTML for Netlify to detect at build time,
+ * but allows submission without page reload for better UX
  */
-async function submitContactForm(formData, form) {
+async function submitToNetlify(form) {
     const submitBtn = form.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     const contactModal = document.getElementById('contactModal');
-    const originalFocusElement = document.activeElement;
     
     // Show loading state
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
     try {
-        const response = await fetch('/api/contact', {
+        // Build URL-encoded form data including the form-name field required by Netlify
+        const formData = new URLSearchParams();
+        formData.append('form-name', 'contact'); // Required by Netlify to identify the form
+        formData.append('fullName', form.fullName.value.trim());
+        formData.append('email', form.email.value.trim());
+        formData.append('message', form.message.value.trim());
+        formData.append('website', form.website.value); // Honeypot field
+        
+        // Submit to Netlify
+        const response = await fetch('/', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: JSON.stringify(formData)
+            body: formData.toString()
         });
         
         if (response.ok) {
-            // Success
+            // Success - show notification and reset form
             showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
             
             // Reset form and close modal
@@ -314,7 +324,7 @@ async function submitContactForm(formData, form) {
             const modal = bootstrap.Modal.getInstance(contactModal);
             if (modal) {
                 modal.hide();
-                // Return focus to the element that opened the modal
+                // Return focus to the contact button after modal closes
                 contactModal.addEventListener('hidden.bs.modal', function focusHandler() {
                     const contactButton = document.querySelector('.contact-button');
                     if (contactButton) {
@@ -324,28 +334,18 @@ async function submitContactForm(formData, form) {
                 }, { once: true });
             }
         } else {
-            // API returned an error
-            const errorData = await response.json().catch(() => ({ error: 'Unknown error occurred' }));
-            const errorMessage = errorData.error || 'Failed to send message. Please try again.';
-            showNotification(errorMessage, 'danger');
+            // Netlify returned an error
+            throw new Error(`Form submission failed with status: ${response.status}`);
         }
     } catch (error) {
         // Network or other error
-        console.error('Contact form submission error:', error);
+        console.error('Netlify form submission error:', error);
         showNotification('Unable to send message. Please check your connection and try again.', 'danger');
     } finally {
         // Reset button state
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
     }
-}
-
-/**
- * Simulate form submission (removed - replaced with real API call)
- */
-function simulateFormSubmission(formData) {
-    // This function is now deprecated and replaced by submitContactForm
-    console.warn('simulateFormSubmission is deprecated. Use submitContactForm instead.');
 }
 
 /**
